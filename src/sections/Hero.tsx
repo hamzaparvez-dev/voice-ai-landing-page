@@ -19,74 +19,68 @@ export default function Hero() {
   return (
     <section 
       ref={sectionRef}
-      className="relative w-full min-h-screen bg-hero-gradient overflow-hidden z-10 flex flex-col items-center justify-center py-16"
+      className="relative w-full min-h-[100svh] bg-hero-gradient overflow-hidden z-10 flex items-center justify-center py-16 lg:py-0"
     >
-      {/* Static Ambient particles - using CSS animations from index.css */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(15)].map((_, i) => (
+      {/* Global Noise Overlay */}
+      <div className="noise-overlay" />
+
+      {/* Background Particles using global violet-light */}
+      <div className="absolute inset-0 pointer-events-none opacity-30">
+        {[...Array(8)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 rounded-full bg-violet/40 animate-float"
+            className="absolute w-1 h-1 rounded-full bg-violet animate-pulse-glow"
             style={{
-              left: `${10 + Math.random() * 80}%`,
-              top: `${10 + Math.random() * 80}%`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${3 + Math.random() * 4}s`
             }}
           />
         ))}
       </div>
 
-      {/* Main content container */}
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Card */}
+      <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Main Hero Card: Uses shadow-card and card-border-glow from index.css */}
         <div 
-          className="relative w-full max-w-5xl mx-auto aspect-[16/10] sm:aspect-[16/9] max-h-[600px] rounded-[28px] overflow-hidden shadow-card card-border-glow transition-all duration-1000 ease-out translate-y-0 opacity-100"
+          className="relative w-full rounded-[24px] lg:rounded-[32px] overflow-hidden shadow-card card-border-glow bg-navy-light flex flex-col min-h-[550px] lg:aspect-[16/8] xl:aspect-[16/7]"
         >
-          {/* Card background image */}
-          <img 
-            src="/hero-agent.jpg" 
-            alt="AI Voice Agent"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+          {/* Visual Background: Adjusted object position for mobile visibility */}
+          <div className="absolute inset-0">
+            <img 
+              src="/hero-agent.jpg" 
+              alt="AI Voice Agent"
+              className="w-full h-full object-cover object-[70%_top] lg:object-right-top opacity-60 lg:opacity-100"
+            />
+            {/* Overlay: Stronger on mobile to maintain text-primary contrast */}
+            <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/90 lg:via-navy/30 to-transparent sm:bg-card-overlay" />
+          </div>
           
-          {/* Card overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-navy/20 sm:bg-card-overlay" />
-          
-          {/* Card content */}
-          <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 lg:p-14">
-            {/* Micro label */}
-            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.15em] text-violet-light mb-3">
-              GenuineStack AI Voice Platform
-            </span>
-            
-            {/* Headline */}
-            <div className="mb-4">
-              <h1 className="font-heading font-bold text-2xl sm:text-4xl lg:text-5xl xl:text-6xl text-text-primary leading-[1.1] tracking-tight">
-                {headlineWords.map((word, i) => (
-                  <span key={i} className="inline-block mr-[0.25em]">
-                    {word}
-                  </span>
-                ))}
-              </h1>
+          {/* Card Content: Uses font-heading (Sora) and text-primary tokens */}
+          <div className="relative z-10 h-full flex flex-col justify-end lg:justify-center p-6 sm:p-10 lg:p-16 max-w-3xl">
+            <div className="inline-flex items-center gap-2 mb-4 lg:mb-6">
+              <span className="w-2 h-2 rounded-full bg-violet animate-pulse" />
+              <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] text-violet-light">
+                GenuineStack AI Voice Platform
+              </span>
             </div>
             
-            {/* Subheadline */}
-            <p className="text-sm sm:text-base lg:text-lg text-text-secondary max-w-xl mb-8 leading-relaxed">
+            <h1 className="font-heading font-bold text-3xl sm:text-5xl lg:text-6xl xl:text-7xl text-text-primary leading-[1.1] tracking-tight mb-4 lg:mb-6">
+              {headlineWords.map((word, i) => (
+                <span key={i} className="inline-block mr-[0.2em]">
+                  {word}
+                </span>
+              ))}
+            </h1>
+            
+            <p className="font-sans text-base sm:text-lg lg:text-xl text-text-secondary max-w-xl mb-8 lg:mb-10 leading-relaxed">
               Stop losing Zillow and Facebook leads. Our AI qualifies buyers, answers questions, and schedules appointments 24/7.
             </p>
             
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <a 
-                href={CALENDLY_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto"
-              >
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a href={CALENDLY_LINK} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
                 <Button 
                   size="lg"
-                  className="w-full sm:w-auto bg-violet hover:bg-violet-dark text-navy font-bold px-8 py-6 text-base rounded-xl transition-transform active:scale-95"
+                  className="w-full sm:w-auto bg-violet hover:bg-violet-dark text-navy font-bold rounded-xl px-8 shadow-glow transition-all active:scale-95"
                 >
                   Book Live Demo
                   <ArrowRight className="w-5 h-5 ml-2" />
@@ -95,7 +89,7 @@ export default function Hero() {
               <Button 
                 size="lg"
                 variant="outline"
-                className="w-full sm:w-auto border-white/20 bg-white/5 backdrop-blur-sm text-text-primary hover:bg-white/10 px-8 py-6 text-base rounded-xl transition-transform active:scale-95"
+                className="w-full sm:w-auto border-white/10 bg-white/5 backdrop-blur-md text-text-primary hover:bg-white/10 rounded-xl px-8 transition-all active:scale-95"
                 onClick={scrollToDemo}
               >
                 <Play className="w-5 h-5 mr-2 fill-current" />
@@ -105,15 +99,15 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Trust badges - Positioned below card for better mobile flow */}
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-10">
-          <div className="flex items-center gap-2 text-text-secondary/80 text-xs sm:text-sm font-medium">
-            <CheckCircle className="w-4 h-4 text-violet" />
-            <span>Used by teams in US & Australia</span>
+        {/* Trust Badges: Using global CheckCircle and text-secondary styles */}
+        <div className="mt-10 lg:mt-12 flex flex-col md:flex-row items-center justify-center gap-6 lg:gap-12">
+          <div className="flex items-center gap-3 text-text-secondary/60">
+            <CheckCircle className="w-5 h-5 text-violet" />
+            <span className="text-sm font-medium tracking-wide">Trusted by teams in US & Australia</span>
           </div>
-          <div className="flex items-center gap-2 text-text-secondary/80 text-xs sm:text-sm font-medium">
-            <CheckCircle className="w-4 h-4 text-violet" />
-            <span>Works with Zillow, Facebook, FollowUpBoss</span>
+          <div className="flex items-center gap-3 text-text-secondary/60">
+            <CheckCircle className="w-5 h-5 text-violet" />
+            <span className="text-sm font-medium tracking-wide">Syncs with Zillow & FollowUpBoss</span>
           </div>
         </div>
       </div>
