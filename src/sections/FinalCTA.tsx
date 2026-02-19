@@ -193,11 +193,11 @@ export default function FinalCTA() {
               <ul className="space-y-3">
                 <li>
                   <a 
-                    href="mailto:hello@genuinestack.com" 
+                    href="mailto:info@automationguild.in" 
                     className="flex items-center gap-2 text-text-secondary hover:text-violet text-sm transition-colors"
                   >
                     <Mail className="w-4 h-4" />
-                    hello@genuinestack.com
+                    info@automationguild.in
                   </a>
                 </li>
                 <li>
