@@ -48,7 +48,7 @@ export default function Navigation() {
                 <Phone className="w-4 h-4 text-navy" />
               </div>
               <span className="font-heading font-bold text-lg text-text-primary">
-                GenuineStack
+                AutomationGuild
               </span>
             </a>
 
