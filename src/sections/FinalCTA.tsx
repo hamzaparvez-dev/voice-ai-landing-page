@@ -126,7 +126,7 @@ export default function FinalCTA() {
                   <Phone className="w-5 h-5 text-navy" />
                 </div>
                 <span className="font-heading font-bold text-xl text-text-primary">
-                  GenuineStack
+                  AutomationGuild
                 </span>
               </div>
               <p className="text-text-secondary text-sm mb-4">
